@@ -1,20 +1,52 @@
 // Import the 'express' module
+import http from 'http';
 import express from 'express';
+import logging from './config/logging';
+import { loggingHandler } from './middleware/loggingHandler';
+import { corsHandler } from './middleware/corsHandler';
+import { routeNotFound } from './middleware/routeNotFound';
+import { server } from './config/config';
 
 // Create an Express application
-const app = express();
+export const app = express();
+export let httpServer: ReturnType<typeof http.createServer>;
 
-// Set the port number for the server
-const port = 3001;
+export const Main = () => {
+    logging.log('----------------------------------------');
+    logging.log('Initializing API');
+    logging.log('----------------------------------------');
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
 
-// Define a route for the root path ('/')
-app.get('/', (req, res) => {
-  // Send a response to the client
-  res.send('Hello, TypeScript + Node.js + Express!');
-});
+    logging.log('----------------------------------------');
+    logging.log('Logging & Configuration');
+    logging.log('----------------------------------------');
+    app.use(loggingHandler);
+    app.use(corsHandler);
 
-// Start the server and listen on the specified port
-app.listen(port, () => {
-  // Log a message when the server is successfully running
-  console.log(`Server is running on http://localhost:${port}`);
-});
+    logging.log('----------------------------------------');
+    logging.log('Define Controller Routing');
+    logging.log('----------------------------------------');
+    app.get('/main/healthcheck', (req, res, next) => {
+        return res.status(200).json({ hello: 'world!' });
+    });
+
+    logging.log('----------------------------------------');
+    logging.log('Define Routing Error');
+    logging.log('----------------------------------------');
+    app.use(routeNotFound);
+
+    logging.log('----------------------------------------');
+    logging.log('Starting Server');
+    logging.log('----------------------------------------');
+    httpServer = http.createServer(app);
+    httpServer.listen(server.SERVER_PORT, () => {
+        logging.log('----------------------------------------');
+        logging.log(`Server started on ${server.SERVER_HOSTNAME}:${server.SERVER_PORT}`);
+        logging.log('----------------------------------------');
+    });
+};
+
+export const Shutdown = (callback: any) => httpServer && httpServer.close(callback);
+
+Main();
