@@ -6,6 +6,8 @@ import { loggingHandler } from './middleware/loggingHandler';
 import { corsHandler } from './middleware/corsHandler';
 import { routeNotFound } from './middleware/routeNotFound';
 import { server } from './config/config';
+import songsRoutes from './routes/songs';
+import connection from './db/database';
 
 // Create an Express application
 export const app = express();
@@ -32,13 +34,33 @@ export const Main = () => {
     });
 
     logging.log('----------------------------------------');
+    logging.log('Define Songs Controller Routing');
+    logging.log('----------------------------------------');
+    app.use('/songs', songsRoutes);
+
+    logging.log('----------------------------------------');
     logging.log('Define Routing Error');
     logging.log('----------------------------------------');
     app.use(routeNotFound);
 
+    // logging.log('----------------------------------------');
+    // logging.log('Starting Server');
+    // logging.log('----------------------------------------');
+
     logging.log('----------------------------------------');
-    logging.log('Starting Server');
+    logging.log('Testing Database Connection');
     logging.log('----------------------------------------');
+    connection
+        .sync()
+        .then(() => {
+            console.log('Database successfully connected');
+        })
+        .catch((err) => {
+            console.log('Error', err);
+        });
+
+    // connectDB();
+
     httpServer = http.createServer(app);
     httpServer.listen(server.SERVER_PORT, () => {
         logging.log('----------------------------------------');
