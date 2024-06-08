@@ -1,10 +1,12 @@
-import { Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import { Column, DataType, ForeignKey, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import { Track } from './track';
 
 @Table({
     timestamps: false,
     tableName: 'songs'
 })
 export class Song extends Model {
+    @ForeignKey(() => Track)
     @PrimaryKey
     @Column({
         type: DataType.INTEGER,

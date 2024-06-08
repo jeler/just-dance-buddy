@@ -1,4 +1,4 @@
-import { Column, DataType, ForeignKey, PrimaryKey, Table, Model } from 'sequelize-typescript';
+import { Column, DataType, ForeignKey, PrimaryKey, Table, Model, BelongsTo } from 'sequelize-typescript';
 import { Song } from './song';
 
 @Table({
@@ -57,6 +57,7 @@ export class Track extends Model {
         type: DataType.STRING(255)
     })
     alternate?: string;
-}
 
-// TODO: Add song details and connect to songs table
+    @BelongsTo(() => Song, 'song_id')
+    song!: Song;
+}
