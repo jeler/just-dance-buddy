@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
-import { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } from '../config/config';
+import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER } from '../config/config';
 import { Song } from '../models/song';
+import { Track } from '../models/track';
 
 const connection = new Sequelize({
     dialect: 'postgres',
@@ -9,7 +10,7 @@ const connection = new Sequelize({
     password: DB_PASSWORD,
     database: DB_NAME,
     logging: false,
-    models: [Song]
+    models: [Song, Track]
 });
 
 export default connection;

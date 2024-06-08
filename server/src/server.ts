@@ -7,6 +7,7 @@ import { corsHandler } from './middleware/corsHandler';
 import { routeNotFound } from './middleware/routeNotFound';
 import { server } from './config/config';
 import songsRoutes from './routes/songs';
+import tracksRoutes from './routes/tracks';
 import connection from './db/database';
 
 // Create an Express application
@@ -37,6 +38,7 @@ export const Main = () => {
     logging.log('Define Songs Controller Routing');
     logging.log('----------------------------------------');
     app.use('/songs', songsRoutes);
+    app.use('/tracks', tracksRoutes);
 
     logging.log('----------------------------------------');
     logging.log('Define Routing Error');
