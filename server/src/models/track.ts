@@ -1,5 +1,7 @@
-import { Column, DataType, ForeignKey, PrimaryKey, Table, Model, BelongsTo } from 'sequelize-typescript';
+import { Column, DataType, ForeignKey, PrimaryKey, Table, Model, BelongsTo, HasMany, BelongsToMany } from 'sequelize-typescript';
 import { Song } from './song';
+import { Person } from './person';
+import { PersonTrack } from './participant';
 
 @Table({
     timestamps: false,
@@ -58,6 +60,11 @@ export class Track extends Model {
     })
     alternate?: string;
 
+    // Associations
+
     @BelongsTo(() => Song, 'song_id')
     song!: Song;
+
+    @HasMany(() => PersonTrack, 'track_id')
+    people!: PersonTrack[];
 }
