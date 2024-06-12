@@ -11,16 +11,28 @@ import { PersonTrack } from '../models/participant';
 // };
 
 // these requests are not unique: both are read as /:songid
+// @issue if put role_id in attributes, new object created =>
+// could not find a solution other than leaving attributes of through table completely blank
 export const GetTrack: RequestHandler = async (req, res, next) => {
     const { track_id } = req.params;
-    console.log(req.params, 'dis params');
-    console.log(track_id);
-    const track: Track | null = await Track.findOne({ where: { track_id }, include: [Song, Person] });
-    // const t = await Track.sequelize?.query({});
-    // const people: PersonTrack[] = await PersonTrack.findAll({ where: { track_id }, include: [Person] });
-    // const combined = await Promise.allSettled([track, people]);
+    const track: Track | null = await Track.findOne({
+        attributes: ['track_id', 'mode', 'difficulty', 'effort', 'alternate'],
+        include: [
+            {
+                model: Song,
+                as: 'song',
+                attributes: ['song_id', 'song_name', 'artist']
+            },
+            {
+                model: Person,
+                as: 'people',
+                attributes: ['person_id', 'name'],
+                through: { attributes: ['role_id'] }
+            }
+        ],
 
-    // const people: PersonTrack[] | null = await PersonTrack.findAll({where: {track_id}, include: [Person]})
+        where: { track_id }
+    });
 
     return res.status(200).json({ message: 'Track fetched', data: track });
 };
