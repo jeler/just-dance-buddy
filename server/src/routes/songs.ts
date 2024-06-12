@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { GetSongs } from '../controllers/songs';
+import { GetSongs, GetSongsFromSearch } from '../controllers/songs';
 
 const router = Router();
 
 router.get('/', GetSongs);
+
+router.get('/search', GetSongsFromSearch);
 
 export default router;

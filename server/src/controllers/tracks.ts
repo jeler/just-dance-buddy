@@ -4,16 +4,16 @@ import { Song } from '../models/song';
 import { Person } from '../models/person';
 import { PersonTrack } from '../models/participant';
 
-// export const GetTracksBySongId: RequestHandler = async (req, res, next) => {
-//     const { song_id } = req.params;
-//     const tracks: Track[] = await Track.findAll({ where: { song_id }, include: [Song] });
-//     return res.status(200).json({ message: 'Tracks fetched', data: tracks });
-// };
+export const GetTracksBySongId: RequestHandler = async (req, res, next) => {
+    console.log(req.params, 'dese params');
+    const { song_id } = req.params;
+    const tracks: Track[] = await Track.findAll({ where: { song_id }, include: [Song] });
+    return res.status(200).json({ message: 'Tracks fetched', data: tracks });
+};
 
-// these requests are not unique: both are read as /:songid
 // @issue if put role_id in attributes, new object created =>
 // could not find a solution other than leaving attributes of through table completely blank
-export const GetTrack: RequestHandler = async (req, res, next) => {
+export const GetTrackByTrackID: RequestHandler = async (req, res, next) => {
     const { track_id } = req.params;
     const track: Track | null = await Track.findOne({
         attributes: ['track_id', 'mode', 'difficulty', 'effort', 'alternate'],
