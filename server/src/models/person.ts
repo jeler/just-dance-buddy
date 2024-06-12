@@ -1,12 +1,12 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, PrimaryKey, Table } from 'sequelize-typescript';
 import { PersonTrack } from './participant';
+import { Track } from './track';
 
 @Table({
     timestamps: false,
     tableName: 'people'
 })
 export class Person extends Model {
-    // @ForeignKey(() => PersonTrack)
     @PrimaryKey
     @Column({
         type: DataType.INTEGER,
@@ -22,5 +22,5 @@ export class Person extends Model {
     // ASSOCIATIONS
 
     @BelongsTo(() => PersonTrack, 'person_id')
-    person!: Person;
+    person!: PersonTrack;
 }

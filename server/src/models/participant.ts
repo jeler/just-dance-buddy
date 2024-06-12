@@ -32,13 +32,9 @@ export class PersonTrack extends Model {
 
     // Associations
 
-    // @HasOne(() => Person, 'person_id')
-    // person!: Person;
+    // @BelongsToMany(() => Track, { through: () => PersonTrack })
+    // tracks!: Track;
 
     @BelongsTo(() => Person, 'person_id')
     person!: Person;
-    // @BelongsTo(() => Track, 'track_id')
-    // track!: Track;
-    // @BelongsToMany(() => Track, () => Person)
-    // people!: Person[];
 }

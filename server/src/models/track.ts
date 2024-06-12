@@ -65,6 +65,6 @@ export class Track extends Model {
     @BelongsTo(() => Song, 'song_id')
     song!: Song;
 
-    @HasMany(() => PersonTrack, 'track_id')
-    people!: PersonTrack[];
+    @BelongsToMany(() => Person, { through: () => PersonTrack })
+    people?: Person;
 }
