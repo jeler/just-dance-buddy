@@ -1,0 +1,12 @@
+// Make env variables available
+require('dotenv').config();
+
+const { resolve } = require('path');
+
+module.exports = {
+    env: 'test',
+    config: resolve('config/config.json'),
+    'models-path': resolve('models'),
+    'seeders-path': resolve('seeders'),
+    'migrations-path': resolve('migrations')
+};
