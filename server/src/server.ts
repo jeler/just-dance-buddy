@@ -61,8 +61,6 @@ export const Main = () => {
             console.log('Error', err);
         });
 
-    // connectDB();
-
     httpServer = http.createServer(app);
     httpServer.listen(server.SERVER_PORT, () => {
         logging.log('----------------------------------------');
