@@ -1,5 +1,5 @@
 import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { PersonTrack } from './participant';
+import { PersonTrack } from './person_tracks';
 import { Track } from './track';
 
 @Table({

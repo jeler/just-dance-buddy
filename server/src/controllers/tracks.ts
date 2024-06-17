@@ -2,7 +2,7 @@ import { RequestHandler } from 'express';
 import { Track } from '../models/track';
 import { Song } from '../models/song';
 import { Person } from '../models/person';
-import { PersonTrack } from '../models/participant';
+import { PersonTrack } from '../models/person_tracks';
 
 export const GetTracksBySongId: RequestHandler = async (req, res, next) => {
     console.log(req.params, 'dese params');

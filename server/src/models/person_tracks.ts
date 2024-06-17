@@ -4,7 +4,7 @@ import { Person } from './person';
 
 @Table({
     timestamps: false,
-    tableName: 'participants'
+    tableName: 'person_tracks'
 })
 export class PersonTrack extends Model {
     @PrimaryKey

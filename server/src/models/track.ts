@@ -1,7 +1,7 @@
 import { Column, DataType, ForeignKey, PrimaryKey, Table, Model, BelongsTo, HasMany, BelongsToMany } from 'sequelize-typescript';
 import { Song } from './song';
 import { Person } from './person';
-import { PersonTrack } from './participant';
+import { PersonTrack } from './person_tracks';
 
 @Table({
     timestamps: false,
