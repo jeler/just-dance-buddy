@@ -3,7 +3,7 @@ import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER } from '../config/config';
 import { Song } from '../models/song';
 import { Track } from '../models/track';
 import { Person } from '../models/person';
-import { PersonTrack } from '../models/participant';
+import { PersonTrack } from '../models/person_tracks';
 
 const connection = new Sequelize({
     dialect: 'postgres',
@@ -11,7 +11,6 @@ const connection = new Sequelize({
     username: DB_USER,
     password: DB_PASSWORD,
     database: DB_NAME,
-    logging: false,
     models: [Song, Track, Person, PersonTrack]
 });
 
