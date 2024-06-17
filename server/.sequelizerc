@@ -5,8 +5,8 @@ const { resolve } = require('path');
 
 module.exports = {
     env: 'test',
-    config: resolve('config/config.json'),
-    'models-path': resolve('models'),
-    'seeders-path': resolve('seeders'),
-    'migrations-path': resolve('migrations')
+    config: resolve('build/config', 'config.js'),
+    'models-path': resolve('build/database-population', 'models'),
+    'seeders-path': resolve('build/database-population', 'seeders'),
+    'migrations-path': resolve('build/database-population', 'migrations')
 };
