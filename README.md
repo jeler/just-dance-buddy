@@ -1,4 +1,4 @@
-# Project Title
+# Just Dance Buddy
 
 Just Dance Buddy helps Just Dancers make and find playlists based on custom filters that are not present in the current game (choreographers for example).
 
