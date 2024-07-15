@@ -14,9 +14,9 @@ function App() {
 
   useEffect(() => {
     const fetchSongs = async () => {
+      // Static value for testing display
       const response = await fetch(`/tracks/song/24`);
       const { data } = await response.json();
-      console.log(data, "dis data");
       setTracks(data);
     };
     fetchSongs();
