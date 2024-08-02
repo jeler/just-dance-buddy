@@ -3,10 +3,19 @@ import { Track } from "./Track";
 
 export const TrackList = ({ tracks }: { tracks: ITrack[] }) => {
   return (
-    <ul className="divide-y divide-gray-200">
-      {tracks.map((t) => (
-        <Track track={t} />
-      ))}
-    </ul>
+    <table className="table-auto shadow-lg bg-white">
+      <thead>
+        <tr>
+          <th>Song</th>
+          <th>Artist</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {tracks.map((t) => (
+          <Track track={t} />
+        ))}
+      </tbody>
+    </table>
   );
 };
