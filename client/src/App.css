@@ -33,3 +33,14 @@
   grid-area: main;
   /* background-color: blue; */
 }
+
+.search {
+  display: grid;
+  grid-template-columns: 50% auto;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: 1fr;
+}

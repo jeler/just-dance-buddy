@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { ITrack } from "./interfaces/Track";
 import { TrackList } from "./components/TrackList";
-import { Search } from "./components/Search";
+import { Search } from "./components/search/Search";
 import { getTracksBySongId } from "./api/tracks";
+import Header from "./components/base-layout/Header";
+import LeftSideBar from "./components/base-layout/LeftSideBar";
 
 interface Resp {
   message: string;
@@ -48,10 +50,10 @@ function App() {
   return (
     // container is a reserved class hence using outer-container
     <div className="outer-container">
-      <div className="header">Header</div>
-      <div className="left-sidebar">Just Dance Buddy</div>
+      {/* <div className="header">Header</div> */}
+      <Header>Hello!</Header>
+      <LeftSideBar>Just Dance Buddy</LeftSideBar>
       <div className="main">
-        Search Term: {searchItem}
         <Search setSearchItem={handleSearchItem} />
         {tracks ? <TrackList tracks={tracks} /> : "Search for Tracks"}
       </div>

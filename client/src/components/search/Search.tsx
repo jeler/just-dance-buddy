@@ -1,12 +1,12 @@
-import { KeyboardEventHandler, useState } from "react";
 import { SearchBar } from "./SearchBar";
+import Categories from "./Categories";
 
 export const Search = ({ setSearchItem }) => {
-  //   console.log(setSearchItem);
   return (
     <>
-      <div>
+      <div className="search">
         <SearchBar setSearchItem={setSearchItem} />
+        <Categories />
       </div>
     </>
   );
