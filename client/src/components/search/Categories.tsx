@@ -16,12 +16,6 @@ const Categories = () => {
     <>
       <form onSubmit={handleSubmit} className="pl-2">
         <div>
-          <div>
-            <input type="checkbox" id="artist_name" />
-            <label htmlFor="artist_name" className="px-2">
-              Artist Name
-            </label>
-          </div>
           <div className="checkbox-group">
             Mode:
             <span>
