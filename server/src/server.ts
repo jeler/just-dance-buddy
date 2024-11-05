@@ -8,6 +8,7 @@ import { routeNotFound } from './middleware/routeNotFound';
 import { server } from './config/config';
 import songsRoutes from './routes/songs';
 import tracksRoutes from './routes/tracks';
+import peopleRoutes from './routes/person';
 import connection from './db/database';
 
 // Create an Express application
@@ -39,6 +40,7 @@ export const Main = () => {
     logging.log('----------------------------------------');
     app.use('/songs', songsRoutes);
     app.use('/tracks', tracksRoutes);
+    app.use('/people', peopleRoutes);
 
     logging.log('----------------------------------------');
     logging.log('Define Routing Error');
