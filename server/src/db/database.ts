@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER } from '../config/config';
+import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER, TEST_DB_NAME_2 } from '../config/config';
 import { Song } from '../models/song';
 import { Track } from '../models/track';
 import { Person } from '../models/person';
@@ -11,7 +11,9 @@ const connection = new Sequelize({
     username: DB_USER,
     password: DB_PASSWORD,
     database: DB_NAME,
-    models: [Song, Track, Person, PersonTrack]
+    // database: TEST_DB_NAME_2,
+    models: [Song, Track, Person, PersonTrack],
+    logging: false
 });
 
 export default connection;
